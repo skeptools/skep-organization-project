@@ -4,9 +4,6 @@ test('ProjenProject', () => {
   const project = new SkepOrganizationProject({
     name: 'foo-project',
     defaultReleaseBranch: 'main',
-    author: 'Foo Bar',
-    authorAddress: 'foo.bar@example.com',
-    repositoryUrl: 'url',
     organizationName: 'Foo Company',
   });
   const fileNames = project.files.map(_ => _.path);
