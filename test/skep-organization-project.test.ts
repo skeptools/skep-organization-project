@@ -7,6 +7,7 @@ test('ProjenProject', () => {
     author: 'Foo Bar',
     authorAddress: 'foo.bar@example.com',
     repositoryUrl: 'url',
+    organizationName: 'Foo Company',
   });
   const fileNames = project.files.map(_ => _.path);
   ['.projen/tasks.json'].forEach(fileName => {

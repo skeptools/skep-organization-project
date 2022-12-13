@@ -164,6 +164,7 @@ const skepOrganizationProjectOptions: SkepOrganizationProjectOptions = { ... }
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.publishToPypi">publishToPypi</a></code> | <code>projen.cdk.JsiiPythonTarget</code> | Publish to pypi. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.python">python</a></code> | <code>projen.cdk.JsiiPythonTarget</code> | *No description.* |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.rootdir">rootdir</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.organizationName">organizationName</a></code> | <code>string</code> | *No description.* |
 
 ---
 
@@ -2240,6 +2241,16 @@ public readonly rootdir: string;
 
 - *Type:* string
 - *Default:* "."
+
+---
+
+##### `organizationName`<sup>Required</sup> <a name="organizationName" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.organizationName"></a>
+
+```typescript
+public readonly organizationName: string;
+```
+
+- *Type:* string
 
 ---
 

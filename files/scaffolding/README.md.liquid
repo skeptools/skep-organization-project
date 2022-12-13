@@ -1,0 +1,43 @@
+# Organization configuration for {{_organizationName.title}}
+Infrastructure-as-code for {{_organizationName.title}}'s teams and people.
+
+## To run
+```
+yarn install
+yarn build
+AWS_ACCESS_KEY={key} AWS_SECRET_KEY={secret} yarn synth
+cd cdktf.out
+terraform init
+TF_WORKSPACE=prod terraform plan -out=prod.tfplan
+terraform apply prod.tfplan
+```
+
+## Adding new people and teams
+There are a couple yarn commands you can use to add new people.
+
+To create a new `config` file for a person, run:
+
+```
+  yarn add-person {firstName} {lastName}
+```
+
+This will create a new src/config/people/first_last.ts file. The name of the manager should also be in the same format, i.e., manager: "first_last". The team file src/config/teams/team_name.ts *must* be added with the new team member with the pattern set in that file.
+
+To create a new `config` file for a team, run:
+
+```
+  yarn add-team {teamName}
+```
+
+To re-generate composite `people` files for use in a `Team` config file plus composite `team` files, run:
+
+```
+  yarn regen
+```
+
+To clean re-generated files using `regen`, run:
+
+```
+  yarn regen:clean
+```
+
