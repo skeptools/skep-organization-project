@@ -110,6 +110,10 @@
       "type": "override"
     },
     {
+      "name": "@rlmartin-projen/cdktf-project",
+      "type": "peer"
+    },
+    {
       "name": "@rlmartin-projen/projen-project",
       "type": "peer"
     },
@@ -117,6 +121,10 @@
       "name": "projen",
       "version": "~0",
       "type": "peer"
+    },
+    {
+      "name": "@rlmartin-projen/cdktf-project",
+      "type": "runtime"
     },
     {
       "name": "@rlmartin-projen/projen-project",

@@ -149,6 +149,12 @@ const skepOrganizationProjectOptions: SkepOrganizationProjectOptions = { ... }
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.tsconfigDev">tsconfigDev</a></code> | <code>projen.javascript.TypescriptConfigOptions</code> | Custom tsconfig options for the development tsconfig.json file (used for testing). |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.tsconfigDevFile">tsconfigDevFile</a></code> | <code>string</code> | The name of the development tsconfig.json file. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.typescriptVersion">typescriptVersion</a></code> | <code>string</code> | TypeScript version to use. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.enabledEnvs">enabledEnvs</a></code> | <code>string[]</code> | Add GitHub Wokflows for enabled environments. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.nodeScripts">nodeScripts</a></code> | <code>{[ key: string ]: string}</code> | A set of scripts to be added to package.json but not wrapped by projen. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.repoAdmins">repoAdmins</a></code> | <code>string[]</code> | The GitHub Team slug (including the org_name/ prefix) or GitHub username for the teams/people who maintain infrastructure. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformModules">terraformModules</a></code> | <code>@rlmartin-projen/cdktf-project.TerraformModuleOptions[]</code> | Terraform Modules to add to cdktf.json. These are assumed to be internal to the Medly GitHub org. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformModulesSsh">terraformModulesSsh</a></code> | <code>boolean</code> | Set this to true for local dev when using SSH to connect to GitHub. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformProviders">terraformProviders</a></code> | <code>string[]</code> | Terraform Providers to add to cdktf.json. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.organizationName">organizationName</a></code> | <code>string</code> | *No description.* |
 
 ---
@@ -2027,6 +2033,84 @@ TypeScript version to use.
 
 NOTE: Typescript is not semantically versioned and should remain on the
 same minor, so we recommend using a `~` dependency (e.g. `~1.2.3`).
+
+---
+
+##### `enabledEnvs`<sup>Optional</sup> <a name="enabledEnvs" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.enabledEnvs"></a>
+
+```typescript
+public readonly enabledEnvs: string[];
+```
+
+- *Type:* string[]
+- *Default:* []
+
+Add GitHub Wokflows for enabled environments.
+
+---
+
+##### `nodeScripts`<sup>Optional</sup> <a name="nodeScripts" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.nodeScripts"></a>
+
+```typescript
+public readonly nodeScripts: {[ key: string ]: string};
+```
+
+- *Type:* {[ key: string ]: string}
+- *Default:* {}
+
+A set of scripts to be added to package.json but not wrapped by projen.
+
+---
+
+##### `repoAdmins`<sup>Optional</sup> <a name="repoAdmins" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.repoAdmins"></a>
+
+```typescript
+public readonly repoAdmins: string[];
+```
+
+- *Type:* string[]
+- *Default:* []
+
+The GitHub Team slug (including the org_name/ prefix) or GitHub username for the teams/people who maintain infrastructure.
+
+---
+
+##### `terraformModules`<sup>Optional</sup> <a name="terraformModules" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformModules"></a>
+
+```typescript
+public readonly terraformModules: TerraformModuleOptions[];
+```
+
+- *Type:* @rlmartin-projen/cdktf-project.TerraformModuleOptions[]
+- *Default:* []
+
+Terraform Modules to add to cdktf.json. These are assumed to be internal to the Medly GitHub org.
+
+---
+
+##### `terraformModulesSsh`<sup>Optional</sup> <a name="terraformModulesSsh" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformModulesSsh"></a>
+
+```typescript
+public readonly terraformModulesSsh: boolean;
+```
+
+- *Type:* boolean
+- *Default:* false
+
+Set this to true for local dev when using SSH to connect to GitHub.
+
+---
+
+##### `terraformProviders`<sup>Optional</sup> <a name="terraformProviders" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformProviders"></a>
+
+```typescript
+public readonly terraformProviders: string[];
+```
+
+- *Type:* string[]
+- *Default:* []
+
+Terraform Providers to add to cdktf.json.
 
 ---
 

@@ -1,12 +1,12 @@
 import * as path from 'path';
+import { CdktfProject, CdktfProjectOptions } from '@rlmartin-projen/cdktf-project';
 import { addFiles, allCases, loadSettings } from '@rlmartin-projen/projen-project';
-import { typescript } from 'projen';
 
-export interface SkepOrganizationProjectOptions extends typescript.TypeScriptProjectOptions {
+export interface SkepOrganizationProjectOptions extends CdktfProjectOptions {
   readonly organizationName: string;
 }
 
-export class SkepOrganizationProject extends typescript.TypeScriptProject {
+export class SkepOrganizationProject extends CdktfProject {
   constructor(options: SkepOrganizationProjectOptions) {
     const tempOptions = {
       ...options,

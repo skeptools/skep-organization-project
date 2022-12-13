@@ -6,6 +6,8 @@ const project = new ProjenProject({
   author: 'Ryan Martin',
   authorAddress: 'rlmartin@gmail.com',
   defaultReleaseBranch: 'main',
+  deps: ['@rlmartin-projen/cdktf-project'],
+  peerDeps: ['@rlmartin-projen/cdktf-project'],
   devDeps: ['@rlmartin-projen/projen-project'],
   name: '@skeptools/skep-organization-project',
   projenrcTs: true,
