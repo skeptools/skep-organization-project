@@ -1,12 +1,26 @@
 import { ProjenProject } from '@rlmartin-projen/projen-project';
+import { NpmAccess } from 'projen/lib/javascript';
+
+const majorVersion = 0;
 const project = new ProjenProject({
   author: 'Ryan Martin',
-  authorAddress: 'ryan@vestahealthcare.com',
+  authorAddress: 'rlmartin@gmail.com',
   defaultReleaseBranch: 'main',
   devDeps: ['@rlmartin-projen/projen-project'],
-  name: 'skep-organization-project',
+  name: '@skeptools/skep-organization-project',
   projenrcTs: true,
   repositoryUrl: 'git@github.com:skeptools/skep-organization-project.git',
+  releaseToNpm: true,
+  npmAccess: NpmAccess.PUBLIC,
+  majorVersion,
+  releaseBranches: {
+    dev: { prerelease: 'dev', npmDistTag: 'dev', majorVersion },
+  },
+  depsUpgradeOptions: {
+    workflowOptions: {
+      branches: ['main'],
+    },
+  },
 
   // deps: [],                /* Runtime dependencies of this module. */
   // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
