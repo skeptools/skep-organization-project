@@ -111,10 +111,12 @@
     },
     {
       "name": "@rlmartin-projen/cdktf-project",
+      "version": "~0",
       "type": "peer"
     },
     {
       "name": "@rlmartin-projen/projen-project",
+      "version": "~0",
       "type": "peer"
     },
     {
@@ -124,10 +126,12 @@
     },
     {
       "name": "@rlmartin-projen/cdktf-project",
+      "version": "~0",
       "type": "runtime"
     },
     {
       "name": "@rlmartin-projen/projen-project",
+      "version": "~0",
       "type": "runtime"
     },
     {

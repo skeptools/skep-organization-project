@@ -58,13 +58,13 @@
     "typescript": "^4.9.4"
   },
   "peerDependencies": {
-    "@rlmartin-projen/cdktf-project": "^0.0.2",
-    "@rlmartin-projen/projen-project": "^0.0.15",
+    "@rlmartin-projen/cdktf-project": "~0",
+    "@rlmartin-projen/projen-project": "~0",
     "projen": "~0"
   },
   "dependencies": {
-    "@rlmartin-projen/cdktf-project": "^0.0.2",
-    "@rlmartin-projen/projen-project": "^0.0.15",
+    "@rlmartin-projen/cdktf-project": "~0",
+    "@rlmartin-projen/projen-project": "~0",
     "liquidjs": "~9",
     "projen": "~0"
   },

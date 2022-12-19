@@ -740,24 +740,16 @@
     "@pnpm/network.ca-file" "^1.0.1"
     config-chain "^1.1.11"
 
-"@rlmartin-projen/cdktf-project@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@rlmartin-projen/cdktf-project/-/cdktf-project-0.0.2.tgz#77afa7ba1efd07982c62f806ee78eb62766352a7"
-  integrity sha512-I6nbW63V4v65DVyNLqjx/5w0/oWcQIGsNABvSwYtGyIXB74olsY12YetsDn5xRpbxMrizae3RTScfnG3+spddw==
+"@rlmartin-projen/cdktf-project@~0":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@rlmartin-projen/cdktf-project/-/cdktf-project-0.0.4.tgz#4ed3e44f41006c18352644ad5978560dac245eef"
+  integrity sha512-2wRINnmfJVJnei/t0U1ITv7qKt/it5a38pf39aGwPBtNujQE7MrRjJq2mBck8uXjQqaWU9xYhHlGvZjT2mDx5Q==
   dependencies:
-    "@rlmartin-projen/projen-project" "^0.0.14"
+    "@rlmartin-projen/projen-project" "~0"
     liquidjs "~9"
     projen "~0"
 
-"@rlmartin-projen/projen-project@^0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@rlmartin-projen/projen-project/-/projen-project-0.0.14.tgz#2000535ef6bb33fed7d497f6eb0b17707779d837"
-  integrity sha512-istIqpnCwezl0Qnu/ATISU9UhkU72lDgiOFpikCi6pjan+RO10Lq6YLT/Zmj9rsIQWgCyrpNkhp25O+6v2baeA==
-  dependencies:
-    liquidjs "~9"
-    projen "~0"
-
-"@rlmartin-projen/projen-project@^0.0.15":
+"@rlmartin-projen/projen-project@~0":
   version "0.0.15"
   resolved "https://registry.yarnpkg.com/@rlmartin-projen/projen-project/-/projen-project-0.0.15.tgz#31363f59574863fa63e71fc4235ceccc8bd39e4a"
   integrity sha512-mS53QVovA43bgnQMfrYTKoOwpCLZdYGzziH1e23JktCNN4ElE4mHnVGeL7kgST6/EZ7JQ5RvCeFCUAvItrA0oA==
