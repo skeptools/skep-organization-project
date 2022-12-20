@@ -149,12 +149,16 @@ const skepOrganizationProjectOptions: SkepOrganizationProjectOptions = { ... }
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.tsconfigDev">tsconfigDev</a></code> | <code>projen.javascript.TypescriptConfigOptions</code> | Custom tsconfig options for the development tsconfig.json file (used for testing). |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.tsconfigDevFile">tsconfigDevFile</a></code> | <code>string</code> | The name of the development tsconfig.json file. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.typescriptVersion">typescriptVersion</a></code> | <code>string</code> | TypeScript version to use. |
-| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.enabledEnvs">enabledEnvs</a></code> | <code>string[]</code> | Add GitHub Wokflows for enabled environments. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.artifactsFolder">artifactsFolder</a></code> | <code>string</code> | Configurable folder for artifacts to package when transitioning from plan to apply. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.deploymentEnvironments">deploymentEnvironments</a></code> | <code>{[ key: string ]: @rlmartin-projen/cdktf-project.DeploymentEnvironment}</code> | Add GitHub Wokflows for enabled environments. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.nodeScripts">nodeScripts</a></code> | <code>{[ key: string ]: string}</code> | A set of scripts to be added to package.json but not wrapped by projen. |
-| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.repoAdmins">repoAdmins</a></code> | <code>string[]</code> | The GitHub Team slug (including the org_name/ prefix) or GitHub username for the teams/people who maintain infrastructure. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmrc">npmrc</a></code> | <code>string[]</code> | Raw lines to drop into the workflow's .npmrc file, to access private package. Empty implies no .npmrc required. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.repoAdmins">repoAdmins</a></code> | <code>{[ key: string ]: number}</code> | The GitHub Team slug (including the org_name/ prefix) or GitHub username for the teams/people who maintain infrastructure. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformBackend">terraformBackend</a></code> | <code>@rlmartin-projen/cdktf-project.TerraformBackend</code> | Terraform backend configuration. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformModules">terraformModules</a></code> | <code>@rlmartin-projen/cdktf-project.TerraformModuleOptions[]</code> | Terraform Modules to add to cdktf.json. These are assumed to be internal to the Medly GitHub org. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformModulesSsh">terraformModulesSsh</a></code> | <code>boolean</code> | Set this to true for local dev when using SSH to connect to GitHub. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformProviders">terraformProviders</a></code> | <code>string[]</code> | Terraform Providers to add to cdktf.json. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformVars">terraformVars</a></code> | <code>string[]</code> | List of Terraform variables to pull from GitHub secrets and set as TF_VAR_ environment variables during terraform plan. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.organizationName">organizationName</a></code> | <code>string</code> | *No description.* |
 
 ---
@@ -2036,14 +2040,27 @@ same minor, so we recommend using a `~` dependency (e.g. `~1.2.3`).
 
 ---
 
-##### `enabledEnvs`<sup>Optional</sup> <a name="enabledEnvs" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.enabledEnvs"></a>
+##### `artifactsFolder`<sup>Optional</sup> <a name="artifactsFolder" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.artifactsFolder"></a>
 
 ```typescript
-public readonly enabledEnvs: string[];
+public readonly artifactsFolder: string;
 ```
 
-- *Type:* string[]
-- *Default:* []
+- *Type:* string
+- *Default:* 'dist'
+
+Configurable folder for artifacts to package when transitioning from plan to apply.
+
+---
+
+##### `deploymentEnvironments`<sup>Optional</sup> <a name="deploymentEnvironments" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.deploymentEnvironments"></a>
+
+```typescript
+public readonly deploymentEnvironments: {[ key: string ]: DeploymentEnvironment};
+```
+
+- *Type:* {[ key: string ]: @rlmartin-projen/cdktf-project.DeploymentEnvironment}
+- *Default:* {}
 
 Add GitHub Wokflows for enabled environments.
 
@@ -2062,16 +2079,46 @@ A set of scripts to be added to package.json but not wrapped by projen.
 
 ---
 
-##### `repoAdmins`<sup>Optional</sup> <a name="repoAdmins" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.repoAdmins"></a>
+##### `npmrc`<sup>Optional</sup> <a name="npmrc" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmrc"></a>
 
 ```typescript
-public readonly repoAdmins: string[];
+public readonly npmrc: string[];
 ```
 
 - *Type:* string[]
 - *Default:* []
 
+Raw lines to drop into the workflow's .npmrc file, to access private package. Empty implies no .npmrc required.
+
+---
+
+##### `repoAdmins`<sup>Optional</sup> <a name="repoAdmins" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.repoAdmins"></a>
+
+```typescript
+public readonly repoAdmins: {[ key: string ]: number};
+```
+
+- *Type:* {[ key: string ]: number}
+- *Default:* {}
+
 The GitHub Team slug (including the org_name/ prefix) or GitHub username for the teams/people who maintain infrastructure.
+
+As a hack, and to avoid async fetching from the GitHub API to lookup ids, this is a map of
+username => GitHub id (which will need to be looked up manually). In the future it would be
+nice to make this a simple string[] (list of usernames) and automatically lookup the ids.
+
+---
+
+##### `terraformBackend`<sup>Optional</sup> <a name="terraformBackend" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformBackend"></a>
+
+```typescript
+public readonly terraformBackend: TerraformBackend;
+```
+
+- *Type:* @rlmartin-projen/cdktf-project.TerraformBackend
+- *Default:* S3Backend
+
+Terraform backend configuration.
 
 ---
 
@@ -2111,6 +2158,23 @@ public readonly terraformProviders: string[];
 - *Default:* []
 
 Terraform Providers to add to cdktf.json.
+
+---
+
+##### `terraformVars`<sup>Optional</sup> <a name="terraformVars" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformVars"></a>
+
+```typescript
+public readonly terraformVars: string[];
+```
+
+- *Type:* string[]
+- *Default:* []
+
+List of Terraform variables to pull from GitHub secrets and set as TF_VAR_ environment variables during terraform plan.
+
+The secrets will need to be set
+manually, on one of org/repo/environment. The name of the var is expected to
+not include the TF_VAR_ prefix.
 
 ---
 
