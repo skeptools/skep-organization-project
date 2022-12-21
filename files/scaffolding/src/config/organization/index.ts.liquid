@@ -1,0 +1,8 @@
+import { OrganizationProps } from '@skeptools/skep-core';
+import { {{ _organizationName.pascal }}Integrations } from '../../stack';
+
+export const organization: OrganizationProps<{{ _organizationName.pascal }}Integrations> = {
+  name: '{{ _organizationName.title }}',
+  integrations: {
+  },
+};

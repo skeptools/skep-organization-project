@@ -1,0 +1,58 @@
+import { Factory as GitHubFactory } from '@skeptools/plugin-github';
+import { OrganizationProps, PersonProps, SkepStack, TeamProps } from '@skeptools/skep-core';
+import { RoleType, TeamType } from '@skeptools/skep';
+import { organization } from './config/organization';
+import * as people from './config/people';
+import * as teams from './config/teams';
+import { Construct } from 'constructs';
+import { Environments } from './environments';
+import { TerraformStack } from 'cdktf';
+
+export type PeopleKeys = Extract<keyof typeof people, string>;
+export type TeamKeys = Extract<keyof typeof teams, string>;
+export type {{ _organizationName.pascal }}Integrations = Integrations<PeopleKeys>;
+
+export interface Integrations<PeopleKeys extends string> {
+  readonly github: GitHubFactory<PeopleKeys, TeamType, RoleType>;
+}
+
+export class {{ _organizationName.pascal }}Stack<
+  PeopleKeys extends string,
+  TeamKeys extends string
+> extends SkepStack<
+  Integrations<PeopleKeys>,
+  PeopleKeys,
+  TeamKeys,
+  TeamType,
+  RoleType
+  > {
+  get defaultConfig() {
+    return {
+      team: {
+        type: 'team' as TeamType,
+      },
+    };
+  }
+
+  load(
+    orgConfig: OrganizationProps<Integrations<PeopleKeys>>,
+    peopleConfig: Record<PeopleKeys, PersonProps<Integrations<PeopleKeys>, RoleType>>,
+    teamConfig: Record<TeamKeys, TeamProps<Integrations<PeopleKeys>, PeopleKeys, TeamType>>,
+  ): Integrations<PeopleKeys> {
+    const github = new GitHubFactory<PeopleKeys, TeamType, RoleType>(
+      this,
+      'github',
+      this.getOrganizationConfig(orgConfig, 'github'),
+      this.getPersonConfig(peopleConfig, 'github'),
+      this.getTeamConfig(teamConfig, 'github'),
+    );
+    github.load();
+    return { github };
+  }
+}
+
+export const pushStacks = (scope: Construct): Environments<TerraformStack> => {
+  return {
+    'prod': new {{ _organizationName.pascal }}Stack<PeopleKeys, TeamKeys>(scope, 'prod', organization, people, teams),
+  }
+}
