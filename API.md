@@ -19,6 +19,7 @@ const skepOrganizationProjectOptions: SkepOrganizationProjectOptions = { ... }
 | --- | --- | --- |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.name">name</a></code> | <code>string</code> | This is the name of your project. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.commitGenerated">commitGenerated</a></code> | <code>boolean</code> | Whether to commit the managed files by default. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.gitOptions">gitOptions</a></code> | <code>projen.GitOptions</code> | Configuration options for git. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.logging">logging</a></code> | <code>projen.LoggerOptions</code> | Configure logging options such as verbosity. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.outdir">outdir</a></code> | <code>string</code> | The root directory of the project. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.parent">parent</a></code> | <code>projen.Project</code> | The parent project, if this project is part of a bigger project. |
@@ -151,6 +152,8 @@ const skepOrganizationProjectOptions: SkepOrganizationProjectOptions = { ... }
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.typescriptVersion">typescriptVersion</a></code> | <code>string</code> | TypeScript version to use. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.artifactsFolder">artifactsFolder</a></code> | <code>string</code> | Configurable folder for artifacts to package when transitioning from plan to apply. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.deploymentEnvironments">deploymentEnvironments</a></code> | <code>{[ key: string ]: @rlmartin-projen/cdktf-project.DeploymentEnvironment}</code> | Add GitHub Wokflows for enabled environments. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.embeddedNamespace">embeddedNamespace</a></code> | <code>string</code> | Used to scope the embedded packages to avoid naming collisions. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.embeddedPackages">embeddedPackages</a></code> | <code>{[ key: string ]: @rlmartin-projen/cdktf-project.EmbeddedPackage}</code> | Small functions to be deployed with the other resources in the repo. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.nodeScripts">nodeScripts</a></code> | <code>{[ key: string ]: string}</code> | A set of scripts to be added to package.json but not wrapped by projen. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmrc">npmrc</a></code> | <code>string[]</code> | Raw lines to drop into the workflow's .npmrc file, to access private package. Empty implies no .npmrc required. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.repoAdmins">repoAdmins</a></code> | <code>{[ key: string ]: number}</code> | The GitHub Team slug (including the org_name/ prefix) or GitHub username for the teams/people who maintain infrastructure. |
@@ -186,6 +189,18 @@ public readonly commitGenerated: boolean;
 - *Default:* true
 
 Whether to commit the managed files by default.
+
+---
+
+##### `gitOptions`<sup>Optional</sup> <a name="gitOptions" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.gitOptions"></a>
+
+```typescript
+public readonly gitOptions: GitOptions;
+```
+
+- *Type:* projen.GitOptions
+
+Configuration options for git.
 
 ---
 
@@ -2066,6 +2081,35 @@ Add GitHub Wokflows for enabled environments.
 
 ---
 
+##### `embeddedNamespace`<sup>Optional</sup> <a name="embeddedNamespace" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.embeddedNamespace"></a>
+
+```typescript
+public readonly embeddedNamespace: string;
+```
+
+- *Type:* string
+- *Default:* top-level project name
+
+Used to scope the embedded packages to avoid naming collisions.
+
+---
+
+##### `embeddedPackages`<sup>Optional</sup> <a name="embeddedPackages" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.embeddedPackages"></a>
+
+```typescript
+public readonly embeddedPackages: {[ key: string ]: EmbeddedPackage};
+```
+
+- *Type:* {[ key: string ]: @rlmartin-projen/cdktf-project.EmbeddedPackage}
+- *Default:* {}
+
+Small functions to be deployed with the other resources in the repo.
+
+Should be viewed more as infrastructure than services. Testing and linting
+intentionally mirror the overall repo.
+
+---
+
 ##### `nodeScripts`<sup>Optional</sup> <a name="nodeScripts" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.nodeScripts"></a>
 
 ```typescript
@@ -2244,6 +2288,7 @@ new SkepOrganizationProject(options: SkepOrganizationProjectOptions)
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.removeScript">removeScript</a></code> | Removes the npm script (always successful). |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.renderWorkflowSetup">renderWorkflowSetup</a></code> | Returns the set of workflow steps which should be executed to bootstrap a workflow. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.setScript">setScript</a></code> | Replaces the contents of an npm package.json script. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.addEmbeddedPackage">addEmbeddedPackage</a></code> | *No description.* |
 
 ---
 
@@ -2738,6 +2783,36 @@ The script name.
 - *Type:* string
 
 The command to execute.
+
+---
+
+##### `addEmbeddedPackage` <a name="addEmbeddedPackage" id="@skeptools/skep-organization-project.SkepOrganizationProject.addEmbeddedPackage"></a>
+
+```typescript
+public addEmbeddedPackage(name: string, config: EmbeddedPackage, majorVersion: number, namespaceOpt?: string): void
+```
+
+###### `name`<sup>Required</sup> <a name="name" id="@skeptools/skep-organization-project.SkepOrganizationProject.addEmbeddedPackage.parameter.name"></a>
+
+- *Type:* string
+
+---
+
+###### `config`<sup>Required</sup> <a name="config" id="@skeptools/skep-organization-project.SkepOrganizationProject.addEmbeddedPackage.parameter.config"></a>
+
+- *Type:* @rlmartin-projen/cdktf-project.EmbeddedPackage
+
+---
+
+###### `majorVersion`<sup>Required</sup> <a name="majorVersion" id="@skeptools/skep-organization-project.SkepOrganizationProject.addEmbeddedPackage.parameter.majorVersion"></a>
+
+- *Type:* number
+
+---
+
+###### `namespaceOpt`<sup>Optional</sup> <a name="namespaceOpt" id="@skeptools/skep-organization-project.SkepOrganizationProject.addEmbeddedPackage.parameter.namespaceOpt"></a>
+
+- *Type:* string
 
 ---
 
