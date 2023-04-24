@@ -1,3 +1,14 @@
+# skep-organization-project
+
+## Usage
+```
+nvm use 14
+npx projen new \
+  --from @skeptools/skep-organization-project \
+  --organization-name "Foo Company" \
+  --projenrc-ts
+```
+
 # API Reference <a name="API Reference" id="api-reference"></a>
 
 
@@ -19,13 +30,14 @@ const skepOrganizationProjectOptions: SkepOrganizationProjectOptions = { ... }
 | --- | --- | --- |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.name">name</a></code> | <code>string</code> | This is the name of your project. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.commitGenerated">commitGenerated</a></code> | <code>boolean</code> | Whether to commit the managed files by default. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.gitIgnoreOptions">gitIgnoreOptions</a></code> | <code>projen.IgnoreFileOptions</code> | Configuration options for .gitignore file. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.gitOptions">gitOptions</a></code> | <code>projen.GitOptions</code> | Configuration options for git. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.logging">logging</a></code> | <code>projen.LoggerOptions</code> | Configure logging options such as verbosity. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.outdir">outdir</a></code> | <code>string</code> | The root directory of the project. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.parent">parent</a></code> | <code>projen.Project</code> | The parent project, if this project is part of a bigger project. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.projenCommand">projenCommand</a></code> | <code>string</code> | The shell command to use in order to run the projen CLI. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.projenrcJson">projenrcJson</a></code> | <code>boolean</code> | Generate (once) .projenrc.json (in JSON). Set to `false` in order to disable .projenrc.json generation. |
-| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.projenrcJsonOptions">projenrcJsonOptions</a></code> | <code>projen.ProjenrcOptions</code> | Options for .projenrc.json. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.projenrcJsonOptions">projenrcJsonOptions</a></code> | <code>projen.ProjenrcJsonOptions</code> | Options for .projenrc.json. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.renovatebot">renovatebot</a></code> | <code>boolean</code> | Use renovatebot to handle dependency upgrades. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.renovatebotOptions">renovatebotOptions</a></code> | <code>projen.RenovatebotOptions</code> | Options for renovatebot. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.autoApproveOptions">autoApproveOptions</a></code> | <code>projen.github.AutoApproveOptions</code> | Enable and configure the 'auto approve' workflow. |
@@ -120,6 +132,7 @@ const skepOrganizationProjectOptions: SkepOrganizationProjectOptions = { ... }
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.mutableBuild">mutableBuild</a></code> | <code>boolean</code> | Automatically update files modified during builds to pull-request branches. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmignore">npmignore</a></code> | <code>string[]</code> | Additional entries to .npmignore. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmignoreEnabled">npmignoreEnabled</a></code> | <code>boolean</code> | Defines an .npmignore file. Normally this is only needed for libraries that are packaged as tarballs. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmIgnoreOptions">npmIgnoreOptions</a></code> | <code>projen.IgnoreFileOptions</code> | Configuration options for .npmignore file. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.package">package</a></code> | <code>boolean</code> | Defines a `package` task that will produce an npm tarball under the artifacts directory (e.g. `dist`). |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.prettier">prettier</a></code> | <code>boolean</code> | Setup prettier. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.prettierOptions">prettierOptions</a></code> | <code>projen.javascript.PrettierOptions</code> | Prettier options. |
@@ -136,6 +149,7 @@ const skepOrganizationProjectOptions: SkepOrganizationProjectOptions = { ... }
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.workflowGitIdentity">workflowGitIdentity</a></code> | <code>projen.github.GitIdentity</code> | The git identity to use in workflows. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.workflowNodeVersion">workflowNodeVersion</a></code> | <code>string</code> | The node version to use in GitHub workflows. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.disableTsconfig">disableTsconfig</a></code> | <code>boolean</code> | Do not generate a `tsconfig.json` file (used by jsii projects since tsconfig.json is generated by the jsii compiler). |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.disableTsconfigDev">disableTsconfigDev</a></code> | <code>boolean</code> | Do not generate a `tsconfig.dev.json` file. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.docgen">docgen</a></code> | <code>boolean</code> | Docgen by Typedoc. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.docsDirectory">docsDirectory</a></code> | <code>string</code> | Docs directory. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.entrypointTypes">entrypointTypes</a></code> | <code>string</code> | The .d.ts file that includes the type declarations for this module. |
@@ -163,6 +177,7 @@ const skepOrganizationProjectOptions: SkepOrganizationProjectOptions = { ... }
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformModulesSsh">terraformModulesSsh</a></code> | <code>boolean</code> | Set this to true for local dev when using SSH to connect to GitHub. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformProviders">terraformProviders</a></code> | <code>string[]</code> | Terraform Providers to add to cdktf.json. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformVars">terraformVars</a></code> | <code>string[]</code> | List of Terraform variables to pull from GitHub secrets and set as TF_VAR_ environment variables during terraform plan. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformVersion">terraformVersion</a></code> | <code>string</code> | The Terraform version to use in the build pipelines. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.organizationName">organizationName</a></code> | <code>string</code> | *No description.* |
 
 ---
@@ -190,6 +205,18 @@ public readonly commitGenerated: boolean;
 - *Default:* true
 
 Whether to commit the managed files by default.
+
+---
+
+##### `gitIgnoreOptions`<sup>Optional</sup> <a name="gitIgnoreOptions" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.gitIgnoreOptions"></a>
+
+```typescript
+public readonly gitIgnoreOptions: IgnoreFileOptions;
+```
+
+- *Type:* projen.IgnoreFileOptions
+
+Configuration options for .gitignore file.
 
 ---
 
@@ -280,10 +307,10 @@ Generate (once) .projenrc.json (in JSON). Set to `false` in order to disable .pr
 ##### `projenrcJsonOptions`<sup>Optional</sup> <a name="projenrcJsonOptions" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.projenrcJsonOptions"></a>
 
 ```typescript
-public readonly projenrcJsonOptions: ProjenrcOptions;
+public readonly projenrcJsonOptions: ProjenrcJsonOptions;
 ```
 
-- *Type:* projen.ProjenrcOptions
+- *Type:* projen.ProjenrcJsonOptions
 - *Default:* default options
 
 Options for .projenrc.json.
@@ -368,7 +395,7 @@ public readonly clobber: boolean;
 ```
 
 - *Type:* boolean
-- *Default:* true
+- *Default:* true, but false for subprojects
 
 Add a `clobber` task which resets the repo to origin.
 
@@ -1065,7 +1092,9 @@ Options for privately hosted scoped packages.
 
 ---
 
-##### `scripts`<sup>Optional</sup> <a name="scripts" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.scripts"></a>
+##### ~~`scripts`~~<sup>Optional</sup> <a name="scripts" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.scripts"></a>
+
+- *Deprecated:* use `project.addTask()` or `package.setScript()`
 
 ```typescript
 public readonly scripts: {[ key: string ]: string};
@@ -1078,6 +1107,7 @@ npm scripts to include.
 
 If a script has the same name as a standard script,
 the standard script will be overwritten.
+Also adds the script as a task.
 
 ---
 
@@ -1657,6 +1687,18 @@ Defines an .npmignore file. Normally this is only needed for libraries that are 
 
 ---
 
+##### `npmIgnoreOptions`<sup>Optional</sup> <a name="npmIgnoreOptions" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmIgnoreOptions"></a>
+
+```typescript
+public readonly npmIgnoreOptions: IgnoreFileOptions;
+```
+
+- *Type:* projen.IgnoreFileOptions
+
+Configuration options for .npmignore file.
+
+---
+
 ##### `package`<sup>Optional</sup> <a name="package" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.package"></a>
 
 ```typescript
@@ -1864,6 +1906,19 @@ public readonly disableTsconfig: boolean;
 - *Default:* false
 
 Do not generate a `tsconfig.json` file (used by jsii projects since tsconfig.json is generated by the jsii compiler).
+
+---
+
+##### `disableTsconfigDev`<sup>Optional</sup> <a name="disableTsconfigDev" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.disableTsconfigDev"></a>
+
+```typescript
+public readonly disableTsconfigDev: boolean;
+```
+
+- *Type:* boolean
+- *Default:* false
+
+Do not generate a `tsconfig.dev.json` file.
 
 ---
 
@@ -2236,6 +2291,19 @@ not include the TF_VAR_ prefix.
 
 ---
 
+##### `terraformVersion`<sup>Optional</sup> <a name="terraformVersion" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformVersion"></a>
+
+```typescript
+public readonly terraformVersion: string;
+```
+
+- *Type:* string
+- *Default:* latest
+
+The Terraform version to use in the build pipelines.
+
+---
+
 ##### `organizationName`<sup>Required</sup> <a name="organizationName" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.organizationName"></a>
 
 ```typescript
@@ -2297,6 +2365,7 @@ new SkepOrganizationProject(options: SkepOrganizationProjectOptions)
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.addFields">addFields</a></code> | Directly set fields in `package.json`. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.addKeywords">addKeywords</a></code> | Adds keywords to package.json (deduplicated). |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.addPeerDeps">addPeerDeps</a></code> | Defines peer dependencies. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.addScripts">addScripts</a></code> | Replaces the contents of multiple npm package.json scripts. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.addTestCommand">addTestCommand</a></code> | DEPRECATED. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.hasScript">hasScript</a></code> | Indicates if a script by the name name is defined. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.removeScript">removeScript</a></code> | Removes the npm script (always successful). |
@@ -2714,6 +2783,22 @@ add/upgrade`. If you wish to specify a version range use this syntax:
 
 ---
 
+##### `addScripts` <a name="addScripts" id="@skeptools/skep-organization-project.SkepOrganizationProject.addScripts"></a>
+
+```typescript
+public addScripts(scripts: {[ key: string ]: string}): void
+```
+
+Replaces the contents of multiple npm package.json scripts.
+
+###### `scripts`<sup>Required</sup> <a name="scripts" id="@skeptools/skep-organization-project.SkepOrganizationProject.addScripts.parameter.scripts"></a>
+
+- *Type:* {[ key: string ]: string}
+
+The scripts to set.
+
+---
+
 ##### ~~`addTestCommand`~~ <a name="addTestCommand" id="@skeptools/skep-organization-project.SkepOrganizationProject.addTestCommand"></a>
 
 ```typescript
@@ -2728,7 +2813,7 @@ DEPRECATED.
 
 ---
 
-##### `hasScript` <a name="hasScript" id="@skeptools/skep-organization-project.SkepOrganizationProject.hasScript"></a>
+##### ~~`hasScript`~~ <a name="hasScript" id="@skeptools/skep-organization-project.SkepOrganizationProject.hasScript"></a>
 
 ```typescript
 public hasScript(name: string): boolean
