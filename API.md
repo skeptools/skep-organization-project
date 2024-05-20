@@ -42,7 +42,7 @@ new SkepOrganizationProject(options: SkepOrganizationProjectOptions)
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.toString">toString</a></code> | Returns a string representation of this construct. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.addExcludeFromCleanup">addExcludeFromCleanup</a></code> | Exclude the matching files from pre-synth cleanup. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.addGitIgnore">addGitIgnore</a></code> | Adds a .gitignore pattern. |
-| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.addPackageIgnore">addPackageIgnore</a></code> | Exclude these files from the bundled package. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.addPackageIgnore">addPackageIgnore</a></code> | Adds patterns to be ignored by npm. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.addTask">addTask</a></code> | Adds a new task to this project. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.addTip">addTip</a></code> | Prints a "tip" message during synthesis. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.annotateGenerated">annotateGenerated</a></code> | Marks the provided file(s) as being generated. |
@@ -122,14 +122,13 @@ The glob pattern to ignore.
 public addPackageIgnore(pattern: string): void
 ```
 
-Exclude these files from the bundled package.
-
-Implemented by project types based on the
-packaging mechanism. For example, `NodeProject` delegates this to `.npmignore`.
+Adds patterns to be ignored by npm.
 
 ###### `pattern`<sup>Required</sup> <a name="pattern" id="@skeptools/skep-organization-project.SkepOrganizationProject.addPackageIgnore.parameter.pattern"></a>
 
 - *Type:* string
+
+The pattern to ignore.
 
 ---
 
@@ -1517,6 +1516,7 @@ public readonly tsconfigEslint: TypescriptConfig;
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.property.DEFAULT_TASK">DEFAULT_TASK</a></code> | <code>string</code> | The name of the default task (the task executed when `projen` is run without arguments). |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProject.property.DEFAULT_TS_JEST_TRANFORM_PATTERN">DEFAULT_TS_JEST_TRANFORM_PATTERN</a></code> | <code>string</code> | *No description.* |
 
 ---
 
@@ -1532,6 +1532,16 @@ The name of the default task (the task executed when `projen` is run without arg
 
 Normally
 this task should synthesize the project files.
+
+---
+
+##### `DEFAULT_TS_JEST_TRANFORM_PATTERN`<sup>Required</sup> <a name="DEFAULT_TS_JEST_TRANFORM_PATTERN" id="@skeptools/skep-organization-project.SkepOrganizationProject.property.DEFAULT_TS_JEST_TRANFORM_PATTERN"></a>
+
+```typescript
+public readonly DEFAULT_TS_JEST_TRANFORM_PATTERN: string;
+```
+
+- *Type:* string
 
 ---
 
@@ -1602,6 +1612,7 @@ const skepOrganizationProjectOptions: SkepOrganizationProjectOptions = { ... }
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.maxNodeVersion">maxNodeVersion</a></code> | <code>string</code> | Minimum node.js version to require via `engines` (inclusive). |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.minNodeVersion">minNodeVersion</a></code> | <code>string</code> | Minimum Node.js version to require via package.json `engines` (inclusive). |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmAccess">npmAccess</a></code> | <code>projen.javascript.NpmAccess</code> | Access level of the npm package. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmProvenance">npmProvenance</a></code> | <code>boolean</code> | Should provenance statements be generated when the package is published. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmRegistry">npmRegistry</a></code> | <code>string</code> | The host name of the npm registry to publish to. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmRegistryUrl">npmRegistryUrl</a></code> | <code>string</code> | The base URL of the npm package registry. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmTokenSecret">npmTokenSecret</a></code> | <code>string</code> | GitHub secret which contains the NPM token to use when publishing packages. |
@@ -1642,10 +1653,11 @@ const skepOrganizationProjectOptions: SkepOrganizationProjectOptions = { ... }
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.artifactsDirectory">artifactsDirectory</a></code> | <code>string</code> | A directory which will contain build artifacts. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.autoApproveUpgrades">autoApproveUpgrades</a></code> | <code>boolean</code> | Automatically approve deps upgrade PRs, allowing them to be merged by mergify (if configued). |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.buildWorkflow">buildWorkflow</a></code> | <code>boolean</code> | Define a GitHub workflow for building PRs. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.buildWorkflowOptions">buildWorkflowOptions</a></code> | <code>projen.javascript.BuildWorkflowOptions</code> | Options for PR build workflow. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.buildWorkflowTriggers">buildWorkflowTriggers</a></code> | <code>projen.github.workflows.Triggers</code> | Build workflow triggers. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.bundlerOptions">bundlerOptions</a></code> | <code>projen.javascript.BundlerOptions</code> | Options for `Bundler`. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.checkLicenses">checkLicenses</a></code> | <code>projen.javascript.LicenseCheckerOptions</code> | Configure which licenses should be deemed acceptable for use by dependencies. |
-| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.codeCov">codeCov</a></code> | <code>boolean</code> | Define a GitHub workflow step for sending code coverage metrics to https://codecov.io/ Uses codecov/codecov-action@v3 A secret is required for private repos. Configured with `@codeCovTokenSecret`. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.codeCov">codeCov</a></code> | <code>boolean</code> | Define a GitHub workflow step for sending code coverage metrics to https://codecov.io/ Uses codecov/codecov-action@v4 A secret is required for private repos. Configured with `@codeCovTokenSecret`. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.codeCovTokenSecret">codeCovTokenSecret</a></code> | <code>string</code> | Define the secret name for a specified https://codecov.io/ token A secret is required to send coverage for private repositories. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.copyrightOwner">copyrightOwner</a></code> | <code>string</code> | License copyright owner. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.copyrightPeriod">copyrightPeriod</a></code> | <code>string</code> | The copyright years to put in the LICENSE file. |
@@ -1692,20 +1704,26 @@ const skepOrganizationProjectOptions: SkepOrganizationProjectOptions = { ... }
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.tsconfig">tsconfig</a></code> | <code>projen.javascript.TypescriptConfigOptions</code> | Custom TSConfig. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.tsconfigDev">tsconfigDev</a></code> | <code>projen.javascript.TypescriptConfigOptions</code> | Custom tsconfig options for the development tsconfig.json file (used for testing). |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.tsconfigDevFile">tsconfigDevFile</a></code> | <code>string</code> | The name of the development tsconfig.json file. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.tsJestOptions">tsJestOptions</a></code> | <code>projen.typescript.TsJestOptions</code> | Options for ts-jest. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.typescriptVersion">typescriptVersion</a></code> | <code>string</code> | TypeScript version to use. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.artifactsFolder">artifactsFolder</a></code> | <code>string</code> | Configurable folder for artifacts to package when transitioning from plan to apply. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.deploymentEnvironments">deploymentEnvironments</a></code> | <code>{[ key: string ]: @rlmartin-projen/cdktf-project.DeploymentEnvironment}</code> | Add GitHub Wokflows for enabled environments. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.embeddedNamespace">embeddedNamespace</a></code> | <code>string</code> | Used to scope the embedded packages to avoid naming collisions. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.embeddedPackages">embeddedPackages</a></code> | <code>{[ key: string ]: @rlmartin-projen/cdktf-project.EmbeddedPackage}</code> | Small functions to be deployed with the other resources in the repo. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.nodeScripts">nodeScripts</a></code> | <code>{[ key: string ]: string}</code> | A set of scripts to be added to package.json but not wrapped by projen. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.nodeVersion">nodeVersion</a></code> | <code>number</code> | The Node.js version to use when building. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmrc">npmrc</a></code> | <code>string[]</code> | Raw lines to drop into the workflow's .npmrc file, to access private package. Empty implies no .npmrc required. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.repoAdmins">repoAdmins</a></code> | <code>{[ key: string ]: number}</code> | The GitHub Team slug (including the org_name/ prefix) or GitHub username for the teams/people who maintain infrastructure. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformBackend">terraformBackend</a></code> | <code>@rlmartin-projen/cdktf-project.TerraformBackend</code> | Terraform backend configuration. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformManualWorkflow">terraformManualWorkflow</a></code> | <code>boolean</code> | Set this to turn on a GitHub workflow that can be used to run manual Terraform commands within the environment. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformModules">terraformModules</a></code> | <code>@rlmartin-projen/cdktf-project.TerraformModuleOptions[]</code> | Terraform Modules to add to cdktf.json. These are assumed to be internal to the Medly GitHub org. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformModulesSsh">terraformModulesSsh</a></code> | <code>boolean</code> | Set this to true for local dev when using SSH to connect to GitHub. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformProviders">terraformProviders</a></code> | <code>string[]</code> | Terraform Providers to add to cdktf.json. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformVars">terraformVars</a></code> | <code>string[]</code> | List of Terraform variables to pull from GitHub secrets and set as TF_VAR_ environment variables during terraform plan. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformVersion">terraformVersion</a></code> | <code>string</code> | The Terraform version to use in the build pipelines. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.workflowEnvVars">workflowEnvVars</a></code> | <code>@rlmartin-projen/cdktf-project.EnvVars</code> | Optional list of env vars to load from GitHub Secrets/Variables into workflow-level env variables. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.workflowInputs">workflowInputs</a></code> | <code>{[ key: string ]: @rlmartin-projen/cdktf-project.WorkflowInputOptions}</code> | Optional inputs (map of name => options) to inject into the workflow_dispatch. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.workflowSteps">workflowSteps</a></code> | <code>@rlmartin-projen/cdktf-project.WorkflowSteps</code> | Optional steps to include in the GitHub workflow. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.organizationName">organizationName</a></code> | <code>string</code> | *No description.* |
 
 ---
@@ -2459,6 +2477,27 @@ Access level of the npm package.
 
 ---
 
+##### `npmProvenance`<sup>Optional</sup> <a name="npmProvenance" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmProvenance"></a>
+
+```typescript
+public readonly npmProvenance: boolean;
+```
+
+- *Type:* boolean
+- *Default:* true for public packages, false otherwise
+
+Should provenance statements be generated when the package is published.
+
+A supported package manager is required to publish a package with npm provenance statements and
+you will need to use a supported CI/CD provider.
+
+Note that the projen `Release` and `Publisher` components are using `publib` to publish packages,
+which is using npm internally and supports provenance statements independently of the package manager used.
+
+> [https://docs.npmjs.com/generating-provenance-statements](https://docs.npmjs.com/generating-provenance-statements)
+
+---
+
 ##### ~~`npmRegistry`~~<sup>Optional</sup> <a name="npmRegistry" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmRegistry"></a>
 
 - *Deprecated:* use `npmRegistryUrl` instead
@@ -2911,7 +2950,7 @@ public readonly releaseWorkflowName: string;
 ```
 
 - *Type:* string
-- *Default:* "Release"
+- *Default:* "release"
 
 The name of the default release workflow.
 
@@ -3036,7 +3075,21 @@ Define a GitHub workflow for building PRs.
 
 ---
 
-##### `buildWorkflowTriggers`<sup>Optional</sup> <a name="buildWorkflowTriggers" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.buildWorkflowTriggers"></a>
+##### `buildWorkflowOptions`<sup>Optional</sup> <a name="buildWorkflowOptions" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.buildWorkflowOptions"></a>
+
+```typescript
+public readonly buildWorkflowOptions: BuildWorkflowOptions;
+```
+
+- *Type:* projen.javascript.BuildWorkflowOptions
+
+Options for PR build workflow.
+
+---
+
+##### ~~`buildWorkflowTriggers`~~<sup>Optional</sup> <a name="buildWorkflowTriggers" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.buildWorkflowTriggers"></a>
+
+- *Deprecated:* - Use `buildWorkflowOptions.workflowTriggers`
 
 ```typescript
 public readonly buildWorkflowTriggers: Triggers;
@@ -3085,7 +3138,7 @@ public readonly codeCov: boolean;
 - *Type:* boolean
 - *Default:* false
 
-Define a GitHub workflow step for sending code coverage metrics to https://codecov.io/ Uses codecov/codecov-action@v3 A secret is required for private repos. Configured with `@codeCovTokenSecret`.
+Define a GitHub workflow step for sending code coverage metrics to https://codecov.io/ Uses codecov/codecov-action@v4 A secret is required for private repos. Configured with `@codeCovTokenSecret`.
 
 ---
 
@@ -3222,7 +3275,9 @@ Jest options.
 
 ---
 
-##### `mutableBuild`<sup>Optional</sup> <a name="mutableBuild" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.mutableBuild"></a>
+##### ~~`mutableBuild`~~<sup>Optional</sup> <a name="mutableBuild" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.mutableBuild"></a>
+
+- *Deprecated:* - Use `buildWorkflowOptions.mutableBuild`
 
 ```typescript
 public readonly mutableBuild: boolean;
@@ -3326,7 +3381,7 @@ public readonly projenDevDependency: boolean;
 ```
 
 - *Type:* boolean
-- *Default:* true
+- *Default:* true if not a subproject
 
 Indicates of "projen" should be installed as a devDependency.
 
@@ -3702,6 +3757,18 @@ The name of the development tsconfig.json file.
 
 ---
 
+##### `tsJestOptions`<sup>Optional</sup> <a name="tsJestOptions" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.tsJestOptions"></a>
+
+```typescript
+public readonly tsJestOptions: TsJestOptions;
+```
+
+- *Type:* projen.typescript.TsJestOptions
+
+Options for ts-jest.
+
+---
+
 ##### `typescriptVersion`<sup>Optional</sup> <a name="typescriptVersion" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.typescriptVersion"></a>
 
 ```typescript
@@ -3786,6 +3853,19 @@ A set of scripts to be added to package.json but not wrapped by projen.
 
 ---
 
+##### `nodeVersion`<sup>Optional</sup> <a name="nodeVersion" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.nodeVersion"></a>
+
+```typescript
+public readonly nodeVersion: number;
+```
+
+- *Type:* number
+- *Default:* 20
+
+The Node.js version to use when building.
+
+---
+
 ##### `npmrc`<sup>Optional</sup> <a name="npmrc" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmrc"></a>
 
 ```typescript
@@ -3826,6 +3906,21 @@ public readonly terraformBackend: TerraformBackend;
 - *Default:* S3Backend
 
 Terraform backend configuration.
+
+---
+
+##### `terraformManualWorkflow`<sup>Optional</sup> <a name="terraformManualWorkflow" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformManualWorkflow"></a>
+
+```typescript
+public readonly terraformManualWorkflow: boolean;
+```
+
+- *Type:* boolean
+
+Set this to turn on a GitHub workflow that can be used to run manual Terraform commands within the environment.
+
+This
+is helpful for debugging and managing complicated state changes.
 
 ---
 
@@ -3895,6 +3990,43 @@ public readonly terraformVersion: string;
 - *Default:* latest
 
 The Terraform version to use in the build pipelines.
+
+---
+
+##### `workflowEnvVars`<sup>Optional</sup> <a name="workflowEnvVars" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.workflowEnvVars"></a>
+
+```typescript
+public readonly workflowEnvVars: EnvVars;
+```
+
+- *Type:* @rlmartin-projen/cdktf-project.EnvVars
+- *Default:* {}
+
+Optional list of env vars to load from GitHub Secrets/Variables into workflow-level env variables.
+
+---
+
+##### `workflowInputs`<sup>Optional</sup> <a name="workflowInputs" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.workflowInputs"></a>
+
+```typescript
+public readonly workflowInputs: {[ key: string ]: WorkflowInputOptions};
+```
+
+- *Type:* {[ key: string ]: @rlmartin-projen/cdktf-project.WorkflowInputOptions}
+
+Optional inputs (map of name => options) to inject into the workflow_dispatch.
+
+---
+
+##### `workflowSteps`<sup>Optional</sup> <a name="workflowSteps" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.workflowSteps"></a>
+
+```typescript
+public readonly workflowSteps: WorkflowSteps;
+```
+
+- *Type:* @rlmartin-projen/cdktf-project.WorkflowSteps
+
+Optional steps to include in the GitHub workflow.
 
 ---
 
