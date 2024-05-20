@@ -2,26 +2,27 @@
   "dependencies": [
     {
       "name": "@types/jest",
-      "version": "^27",
+      "version": "29",
       "type": "build"
     },
     {
       "name": "@types/node",
-      "version": "^16",
+      "version": "^20",
       "type": "build"
     },
     {
       "name": "@typescript-eslint/eslint-plugin",
-      "version": "^5",
+      "version": "^6",
       "type": "build"
     },
     {
       "name": "@typescript-eslint/parser",
-      "version": "^5",
+      "version": "^6",
       "type": "build"
     },
     {
-      "name": "eslint-import-resolver-node",
+      "name": "constructs",
+      "version": "^10.0.0",
       "type": "build"
     },
     {
@@ -44,7 +45,7 @@
     },
     {
       "name": "jest",
-      "version": "^27",
+      "version": "29",
       "type": "build"
     },
     {
@@ -60,13 +61,13 @@
       "type": "build"
     },
     {
-      "name": "jsii",
-      "version": "1.x",
+      "name": "jsii-rosetta",
+      "version": "~5",
       "type": "build"
     },
     {
-      "name": "npm-check-updates",
-      "version": "^16",
+      "name": "jsii",
+      "version": "~5",
       "type": "build"
     },
     {
@@ -80,7 +81,7 @@
     },
     {
       "name": "ts-jest",
-      "version": "^27",
+      "version": "29",
       "type": "build"
     },
     {
@@ -93,22 +94,12 @@
     },
     {
       "name": "liquidjs",
-      "version": "~9",
+      "version": "~10",
       "type": "bundled"
     },
     {
-      "name": "@types/babel__traverse",
-      "version": "7.18.2",
-      "type": "override"
-    },
-    {
-      "name": "@types/prettier",
-      "version": "2.6.0",
-      "type": "override"
-    },
-    {
       "name": "@rlmartin-projen/cdktf-project",
-      "version": "~0",
+      "version": "~4",
       "type": "peer"
     },
     {
@@ -123,7 +114,7 @@
     },
     {
       "name": "@rlmartin-projen/cdktf-project",
-      "version": "~0",
+      "version": "~4",
       "type": "runtime"
     },
     {
@@ -133,7 +124,7 @@
     },
     {
       "name": "liquidjs",
-      "version": "~9",
+      "version": "~10",
       "type": "runtime"
     },
     {
