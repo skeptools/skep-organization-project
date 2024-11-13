@@ -1,14 +1,3 @@
-# skep-organization-project
-
-## Usage
-```
-nvm use 14
-npx projen new \
-  --from @skeptools/skep-organization-project \
-  --organization-name "Foo Company" \
-  --projenrc-ts
-```
-
 # API Reference <a name="API Reference" id="api-reference"></a>
 
 ## Constructs <a name="Constructs" id="Constructs"></a>
@@ -593,7 +582,7 @@ The command to execute.
 ##### `addEmbeddedPackage` <a name="addEmbeddedPackage" id="@skeptools/skep-organization-project.SkepOrganizationProject.addEmbeddedPackage"></a>
 
 ```typescript
-public addEmbeddedPackage(name: string, config: EmbeddedPackage, majorVersion: number, namespaceOpt?: string): void
+public addEmbeddedPackage(name: string, config: EmbeddedPackage, majorVersion: number, rootDir?: string, namespaceOpt?: string): void
 ```
 
 ###### `name`<sup>Required</sup> <a name="name" id="@skeptools/skep-organization-project.SkepOrganizationProject.addEmbeddedPackage.parameter.name"></a>
@@ -611,6 +600,12 @@ public addEmbeddedPackage(name: string, config: EmbeddedPackage, majorVersion: n
 ###### `majorVersion`<sup>Required</sup> <a name="majorVersion" id="@skeptools/skep-organization-project.SkepOrganizationProject.addEmbeddedPackage.parameter.majorVersion"></a>
 
 - *Type:* number
+
+---
+
+###### `rootDir`<sup>Optional</sup> <a name="rootDir" id="@skeptools/skep-organization-project.SkepOrganizationProject.addEmbeddedPackage.parameter.rootDir"></a>
+
+- *Type:* string
 
 ---
 
@@ -1645,7 +1640,7 @@ const skepOrganizationProjectOptions: SkepOrganizationProjectOptions = { ... }
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.releaseTrigger">releaseTrigger</a></code> | <code>projen.release.ReleaseTrigger</code> | The release trigger to use. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.releaseWorkflowName">releaseWorkflowName</a></code> | <code>string</code> | The name of the default release workflow. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.releaseWorkflowSetupSteps">releaseWorkflowSetupSteps</a></code> | <code>projen.github.workflows.JobStep[]</code> | A set of workflow steps to execute in order to setup the workflow container. |
-| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.versionrcOptions">versionrcOptions</a></code> | <code>{[ key: string ]: any}</code> | Custom configuration used when creating changelog with standard-version package. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.versionrcOptions">versionrcOptions</a></code> | <code>{[ key: string ]: any}</code> | Custom configuration used when creating changelog with commit-and-tag-version package. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.workflowContainerImage">workflowContainerImage</a></code> | <code>string</code> | Container image to use for GitHub workflows. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.workflowRunsOn">workflowRunsOn</a></code> | <code>string[]</code> | Github Runner selection labels. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.workflowRunsOnGroup">workflowRunsOnGroup</a></code> | <code>projen.GroupRunnerOptions</code> | Github Runner Group selection options. |
@@ -1714,6 +1709,7 @@ const skepOrganizationProjectOptions: SkepOrganizationProjectOptions = { ... }
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.nodeVersion">nodeVersion</a></code> | <code>number</code> | The Node.js version to use when building. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.npmrc">npmrc</a></code> | <code>string[]</code> | Raw lines to drop into the workflow's .npmrc file, to access private package. Empty implies no .npmrc required. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.repoAdmins">repoAdmins</a></code> | <code>{[ key: string ]: number}</code> | The GitHub Team slug (including the org_name/ prefix) or GitHub username for the teams/people who maintain infrastructure. |
+| <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.rootDir">rootDir</a></code> | <code>string</code> | Root directory where code lives. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformBackend">terraformBackend</a></code> | <code>@rlmartin-projen/cdktf-project.TerraformBackend</code> | Terraform backend configuration. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformManualWorkflow">terraformManualWorkflow</a></code> | <code>boolean</code> | Set this to turn on a GitHub workflow that can be used to run manual Terraform commands within the environment. |
 | <code><a href="#@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.terraformModules">terraformModules</a></code> | <code>@rlmartin-projen/cdktf-project.TerraformModuleOptions[]</code> | Terraform Modules to add to cdktf.json. These are assumed to be internal to the Medly GitHub org. |
@@ -2977,7 +2973,7 @@ public readonly versionrcOptions: {[ key: string ]: any};
 - *Type:* {[ key: string ]: any}
 - *Default:* standard configuration applicable for GitHub repositories
 
-Custom configuration used when creating changelog with standard-version package.
+Custom configuration used when creating changelog with commit-and-tag-version package.
 
 Given values either append to default configuration or overwrite values in it.
 
@@ -3893,6 +3889,19 @@ The GitHub Team slug (including the org_name/ prefix) or GitHub username for the
 As a hack, and to avoid async fetching from the GitHub API to lookup ids, this is a map of
 username => GitHub id (which will need to be looked up manually). In the future it would be
 nice to make this a simple string[] (list of usernames) and automatically lookup the ids.
+
+---
+
+##### `rootDir`<sup>Optional</sup> <a name="rootDir" id="@skeptools/skep-organization-project.SkepOrganizationProjectOptions.property.rootDir"></a>
+
+```typescript
+public readonly rootDir: string;
+```
+
+- *Type:* string
+- *Default:* 'src'
+
+Root directory where code lives.
 
 ---
 
