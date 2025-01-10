@@ -745,10 +745,10 @@
   resolved "https://registry.yarnpkg.com/@oozcitak/util/-/util-8.3.8.tgz#10f65fe1891fd8cde4957360835e78fd1936bfdd"
   integrity sha512-T8TbSnGsxo6TDBJx/Sgv/BlVJL3tshxZP7Aq5R1mSnM5OcHY2dQaxLMu2+E8u3gN0MLOzdjurqN4ZRVuzQycOQ==
 
-"@rlmartin-projen/cdktf-project@~4":
-  version "4.6.4"
-  resolved "https://registry.yarnpkg.com/@rlmartin-projen/cdktf-project/-/cdktf-project-4.6.4.tgz#f16c53a93f1a35708b336c49eaa21df1720158eb"
-  integrity sha512-Bp/VfSQWlzrLu7/43XivaZqPzj6pJMBGi2EHoGUbRkF6FhVutKJc0DvI//8RNGJs8xW+uwcVicah6Bf3WqRjjw==
+"@rlmartin-projen/cdktf-project@~5":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@rlmartin-projen/cdktf-project/-/cdktf-project-5.0.0.tgz#d40a2baa71a3bdacae436a26d76e215aa6cbac5a"
+  integrity sha512-VjOpNJJ0nKNlVfclPgY2bDdwyDKCWKRizYD+JfCyGPBLRFOYNEpaXiIu1lqdVOVThElVmk0ACQ48H36ZYOoTSQ==
   dependencies:
     "@cdktf/provider-archive" "~10"
     "@cdktf/provider-aws" "~19"
