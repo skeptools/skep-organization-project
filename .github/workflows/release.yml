@@ -3,15 +3,13 @@
 name: release
 run-name: ${{ inputs.dry_run && format('[DRY RUN] release by @{0}', github.actor) || '' }}
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       dry_run:
         description: Dry run (skip actual publishing)
         required: false
         type: boolean
+  workflow_call: {}
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: false
@@ -160,6 +158,6 @@ jobs:
           NPM_DIST_TAG: latest
           NPM_REGISTRY: registry.npmjs.org
           NPM_CONFIG_PROVENANCE: "true"
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TRUSTED_PUBLISHER: "true"
           PUBLIB_DRYRUN: ${{ inputs.dry_run }}
         run: npx '-p' 'publib@latest' 'publib-npm'

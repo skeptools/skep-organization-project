@@ -75,6 +75,13 @@
   "engines": {
     "node": ">= 24.0.0"
   },
+  "devEngines": {
+    "packageManager": {
+      "name": "yarn",
+      "version": "1.22.22",
+      "onFail": "ignore"
+    }
+  },
   "main": "lib/index.js",
   "license": "Apache-2.0",
   "stability": "stable",

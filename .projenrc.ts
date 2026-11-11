@@ -1,5 +1,5 @@
 import { ProjenProject } from '@rlmartin-projen/projen-project';
-import { NpmAccess } from 'projen/lib/javascript';
+import { NpmAccess, NodePackageManager } from 'projen/lib/javascript';
 
 const majorVersion = 0;
 const project = new ProjenProject({
@@ -14,7 +14,9 @@ const project = new ProjenProject({
   repositoryUrl: 'git@github.com:skeptools/skep-organization-project.git',
   releaseToNpm: true,
   npmAccess: NpmAccess.PUBLIC,
+  npmTrustedPublishing: true,
   majorVersion,
+  packageManager: NodePackageManager.YARN_CLASSIC,
   releaseBranches: {
     dev: { prerelease: 'dev', npmDistTag: 'dev', majorVersion },
   },
@@ -28,4 +30,10 @@ const project = new ProjenProject({
   // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
   // packageName: undefined,  /* The "name" in package.json. */
 });
+
+// ProjenProject uses application defaults for tsconfig. jsii needs declarations
+// and must emit them alongside the JavaScript at the package's lib entry point.
+project.tsconfig?.file.addOverride('compilerOptions.declaration', true);
+project.tsconfig?.file.addOverride('compilerOptions.outDir', project.libdir);
+
 project.synth();
