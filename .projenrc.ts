@@ -17,6 +17,7 @@ const project = new ProjenProject({
   npmTrustedPublishing: true,
   majorVersion,
   packageManager: NodePackageManager.YARN_CLASSIC,
+  typescriptVersion: '~5.9',
   releaseBranches: {
     dev: { prerelease: 'dev', npmDistTag: 'dev', majorVersion },
   },
